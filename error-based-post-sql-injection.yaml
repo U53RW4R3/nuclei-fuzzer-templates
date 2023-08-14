@@ -2,7 +2,7 @@ id: error-based-post-sql-injection
 
 info:
   name: SQL Injection Detection for POST Request
-  author: Userware (U53RW4R3)
+  author: Userware (U53RW4R3), fopwn (notnci)
   severity: high
   description: |
     Detects potential SQL injection vulnerabilities for POST request
@@ -15,11 +15,14 @@ requests:
         Host: {{Hostname}}
         Content-Type: application/x-www-form-urlencoded
 
-        uname={{path}}&pass={{path}}
+        {{username_forum}}={{path}}&{{password_forum}}={{path}}
 
     payloads:
-      path: payloads.txt
-    attack: pitchfork
+      path: sqli-payloads.txt
+      username_forum: username_forums.txt
+      password_forum: password_forums.txt
+    attack: clusterbomb
+
 
     matchers-condition: and
     matchers:
@@ -211,11 +214,6 @@ requests:
         condition: or
 
     extractors:
-      - type: regex
-        name: CustomParams
-        regex:
-          - '(?:\b\w+=)(\w+)(?:&|$)'
-
       - type: regex
         name: MySQL
         regex:
