@@ -6,6 +6,8 @@ info:
   severity: critical
   description: |
     Detects potential SQL injection vulnerabilities for POST request
+  references:
+    - https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/burp-parameter-names.txt
   tags: sqli,generic,error
 
 requests:
