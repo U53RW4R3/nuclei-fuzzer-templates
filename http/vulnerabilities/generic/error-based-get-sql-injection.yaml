@@ -1,36 +1,45 @@
-id: error-based-post-sql-injection
+id: error-based-get-sql-injection
 
 info:
-  name: SQL Injection Detection for POST Request
-  author: Userware (U53RW4R3), fopwn (notnci)
-  severity: high
-  description: |
-    Detects potential SQL injection vulnerabilities for POST request
+  name: Error based SQL injection for GET Request
+  author: geeknik
+  severity: critical
+  description: Detects potential SQL injection via error strings in 29 database engines. Inspired by https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/errors.xml.
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+    cvss-score: 9.8
+    cwe-id: CWE-89
   tags: sqli,generic,error
+  metadata:
+    max-request: 1
 
-requests:
-  - raw:
-      - |
-        POST {{Path}}{{File}} HTTP/1.1
-        Host: {{Hostname}}
-        Content-Type: application/x-www-form-urlencoded
-
-        {{username_forum}}={{path}}&{{password_forum}}={{path}}
-
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    
     payloads:
-      path: sqli-payloads.txt
-      username_forum: username_forums.txt
-      password_forum: password_forums.txt
-    attack: clusterbomb
+      payload: helpers/payloads/sql-injection.txt
+    
+    fuzzing:
+      - part: query
+        type: postfix
+        fuzz:
+          - "{{payload}}"
 
-
+    stop-at-first-match: true
     matchers-condition: and
     matchers:
-      - type: status
-        status:
-          - 302
+      - type: word
+        part: body
+        words:
+          - "Adminer"
+        # False Positive
+        negative: true
+
       - type: regex
         regex:
+          # MySQL
           - "SQL syntax.*?MySQL"
           - "Warning.*?\\Wmysqli?_"
           - "MySQLSyntaxErrorException"
@@ -42,10 +51,10 @@ requests:
           - "Zend_Db_(Adapter|Statement)_Mysqli_Exception"
           - "Pdo[./_\\\\]Mysql"
           - "MySqlException"
-          - "SQLSTATE[\\d+]: Syntax error or access violation"
+          - "SQLSTATE\\[\\d+\\]: Syntax error or access violation"
           # MariaDB
           - "check the manual that (corresponds to|fits) your MariaDB server version"
-           # Drizzle
+          # Drizzle
           - "check the manual that (corresponds to|fits) your Drizzle server version"
           # MemSQL
           - "MemSQL does not support this type of query"
