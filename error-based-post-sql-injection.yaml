@@ -6,6 +6,7 @@ info:
   severity: high
   description: |
     Detects potential SQL injection vulnerabilities for POST request
+  tags: sqli,generic,error
 
 requests:
   - raw:
