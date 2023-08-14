@@ -47,6 +47,7 @@ fromemail
 inUserName
 log
 login
+login_email
 myusername
 pdouser
 txtUser
