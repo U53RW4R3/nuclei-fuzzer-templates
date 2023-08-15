@@ -7,8 +7,9 @@ info:
   description: |
     Detects potential SQL injection vulnerabilities for POST request
   reference:
+    - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/errors.xml
     - https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/burp-parameter-names.txt
-  tags: sqli,generic,error
+  tags: sqli,error
 
 requests:
   - raw:
@@ -20,9 +21,9 @@ requests:
         {{username_param}}={{payload}}&{{password_param}}={{payload}}
 
     payloads:
-      payload: helpers/payloads/sql-injection.txt
-      username_param: helpers/wordlists/username-forums.txt
-      password_param: helpers/wordlists/password-forums.txt
+      payload: payloads/sql-injection.txt
+      username_param: wordlists/username-forums.txt
+      password_param: wordlists/password-forums.txt
     attack: clusterbomb
 
     stop-at-first-match: true
