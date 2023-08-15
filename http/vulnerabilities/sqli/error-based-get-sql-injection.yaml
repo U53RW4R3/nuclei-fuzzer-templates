@@ -19,7 +19,7 @@ http:
       - "{{BaseURL}}"
     
     payloads:
-      payload: helpers/payloads/sql-injection.txt
+      payload: payloads/sql-injection.txt
     
     fuzzing:
       - part: query
