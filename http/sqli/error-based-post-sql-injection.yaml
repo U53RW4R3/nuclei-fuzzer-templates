@@ -9,7 +9,7 @@ info:
   reference:
     - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/errors.xml
     - https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/burp-parameter-names.txt
-  tags: sqli,error
+  tags: sqli,error,dast
 
 http:
   - raw:
