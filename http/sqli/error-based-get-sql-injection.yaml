@@ -24,6 +24,7 @@ http:
     fuzzing:
       - part: query
         type: postfix
+        mode: single
         fuzz:
           - "{{payload}}"
 
