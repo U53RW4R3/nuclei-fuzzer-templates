@@ -26,7 +26,7 @@ http:
     fuzzing:
       - part: query
         type: replace
-        mode: multiple
+        mode: single
         fuzz:
           - "{{payload}}"
 
