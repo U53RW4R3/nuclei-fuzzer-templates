@@ -10,6 +10,8 @@ https://github.com/CharanRayudu/Custom-Nuclei-Templates
 
 https://github.com/MR-pentestGuy/nuclei-templates
 
+https://github.com/JoshMorrison99/url-based-nuclei-templates
+
 ## Credits
 
 Special thanks to [fopwn](https://github.com/notnci) for providing me suggestions.
