@@ -6,9 +6,9 @@ My personal collection of nuclei templates.
 
 https://github.com/geeknik/the-nuclei-templates
 
-https://github.com/geeknik/the-nuclei-templates/blob/main/header-blind-sql-injection.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates
 
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/header_sqli.yaml
+https://github.com/MR-pentestGuy/nuclei-templates
 
 ## Credits
 
