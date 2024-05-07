@@ -1,0 +1,230 @@
+All in one
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/errors-n-vulns.yaml (duplicate commix payloads for command injection)
+
+HTTP Header Injection
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/host_poisening.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/cache_piossing.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/content_injection.yaml
+
+SQL Injection
+
+Also improvements for adding prefix and suffix in the destination for the sql injection
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/sqli_header.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/sqli-00.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/sqli-01.yaml
+
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli-2.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/bad/time-based-sql-injection.yaml (time based SQLi)
+
+Command Injection
+
+Also improvements for adding prefix and suffix in the destination for the command injection
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/header-command-injection.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/shell_scripts.yaml (for shellshock)
+
+Open Redirect
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect-00.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect-01.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect-02.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect-03.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect-04.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/open-redirect.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/redirect.yaml
+
+SSRF
+
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/blind_ssrf.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/ssrf-blind.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/ssrf-blind-host.yaml
+
+SSTI
+
+LFI
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/dir-traversal.yaml (for improvements)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-00.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-01.yaml (LFI header injection for windows)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-05.yaml (LFI on windows)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-06.yaml (LFI on UNIX)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-02.yaml (LFI via fuzzing parameters)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-03.yaml (LFI via payloads)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-04.yaml (LFI on path)
+
+XSS
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/xss-fuzz.yaml (reference for improvements)
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/blind-xss.yaml
+
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/blind_xss_header.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/header_blind_xss.yaml
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/blind-xss-user-agent.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/simple-xss.yaml (response reference)
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/reflected-headers.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/reflected-params.yaml
+
+https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/dom-xss.yaml
+
+CORS
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/cors-00.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/cors-01.yaml
+
+CSP
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/missing-csp.yaml
+
+CRLF
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/crlf.yaml
+
+HTTP
+
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/hmc.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/hmo.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/hho.yaml
+
+HTTP Proxy
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/connect-proxy.yaml
+
+Broken Access Control
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/common-forbidden-bypass.yaml (forbidden bypass)
+
+Data Exposure
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/iis-directory-listing.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/svn-leak.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/Nuclei-Templates/Git-search-logs.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/Nuclei-Templates/Dir-Contents-Disc-logs.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/default-config.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/aws-s3-open-bucket.yaml (s3 bucket)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/developer_notes.yaml (developer notes -> comments in HTML)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/error-logs.yaml (error logs)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/nginx-conf-exposed.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/esmtprc.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/exposed-bitkeeper.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/exposed-bzr.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/exposed-darcs.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/exposed-hg.yaml
+
+SSH exposure
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ssh-authorized-keys.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ssh-known-hosts.yaml
+
+Wordpress exposure
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/wordpress-directory-listing.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/wordpress-misconfig.yaml
+
+Credentials Exposure
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/git-credentials.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/gitleak.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/netrc.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/server-private-keys.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/wordpress-accessible-wpconfig.yaml
+
+Default Credentials
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/zabbix-creds.yaml
+
+DBMS
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/firebase_urls.yaml
+
+API Endpoints
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/api_endpoints.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/graphql_get.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/soap-defination-probing.yaml (swagger)
+
+API and Tokens Exposure
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/api-keys.yaml (combine them all into one)
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/gmail-api-client-secrets.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Amazon-mws-auth-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Dynatrace-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Facebook-client-id.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Facebook-secret.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/GCP-service-account.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Google-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Linkedin-id.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Mailchimp-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Mailgun-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Paypal-braintree-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Pictatic-API-key.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Sendgrid-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Shopify-custom-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Shopify-private-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Shopify-shared-secret.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Shopify-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Slack-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Slack-webhook.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Square-access-token.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Square-oauth-secret.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Stripe-api-key.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Twilio-api.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/Twitter-secret.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/aws-access-id.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/aws-cognito.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/cloudinary.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/credentials.yaml (basic auth credentials)
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/mobile-nuclei-templates/Keys/private-key.yaml
+
+HTML parameters
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/foulenzer-templates/logins.yaml
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/foulenzer-templates/searches.yaml
+
+Webshells
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/shells.yaml
