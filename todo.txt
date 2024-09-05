@@ -74,6 +74,10 @@ https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-03.yaml (L
 
 https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/lfi-04.yaml (LFI on path)
 
+RFI
+
+https://github.com/projectdiscovery/nuclei-templates/blob/main/dast/vulnerabilities/rfi/generic-rfi.yaml
+
 XSS
 
 https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/xss-fuzz.yaml (reference for improvements)
